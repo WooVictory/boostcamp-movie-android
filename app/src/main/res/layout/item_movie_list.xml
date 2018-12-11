@@ -1,6 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             android:layout_width="match_parent"
-                                             android:layout_height="match_parent">
+<RelativeLayout
+        android:id="@+id/movieItem"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp"
+        android:layout_marginHorizontal="8dp">
 
-</android.support.constraint.ConstraintLayout>
+    <ImageView
+            android:id="@+id/movieImageItem"
+            android:layout_width="130dp"
+            android:layout_height="200dp"/>
+
+    <LinearLayout
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/movieImageItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <TextView
+                android:id="@+id/movieTitleItem"
+                android:text="엑스맨"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <RatingBar
+                android:id="@+id/movieRatingItem"
+                style="@style/Base.Widget.AppCompat.RatingBar.Small"
+                android:max="5"
+                android:numStars="5"
+                android:rating="3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:id="@+id/movieDateItem"
+                android:text="2019"
+                android:layout_marginTop="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:layout_marginTop="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/movieDirectorItem"
+                android:text="스티븐 스필버그"/>
+
+        <TextView
+                android:id="@+id/movieActorsItem"
+                android:layout_marginTop="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

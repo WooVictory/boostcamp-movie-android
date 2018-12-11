@@ -11,6 +11,7 @@
     <LinearLayout
             android:layout_marginTop="8dp"
             android:orientation="horizontal"
+            android:layout_marginHorizontal="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -20,7 +21,7 @@
                 android:layout_height="56dp"
                 android:layout_weight="3"/>
 
-        <Button android:id="@+id/mainSearchButton"
+        <Button android:id="@+id/movieSearchButton"
                 android:layout_width="0dp"
                 android:text="@string/search"
                 android:layout_height="56dp"
@@ -29,9 +30,19 @@
 
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-            android:id="@+id/movieList"
+    <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/movieSwipeRefresh"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="16dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/movieList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
 
 </LinearLayout>

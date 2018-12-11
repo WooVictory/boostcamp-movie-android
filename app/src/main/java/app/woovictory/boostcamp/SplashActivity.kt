@@ -4,6 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import app.woovictory.boostcamp.view.MovieActivity
 
 class SplashActivity : AppCompatActivity() {
 
@@ -13,7 +14,7 @@ class SplashActivity : AppCompatActivity() {
 
         var handler = Handler()
         handler.postDelayed({
-            startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+            startActivity(Intent(this@SplashActivity, MovieActivity::class.java))
             finish()
         }, 2000)
     }
