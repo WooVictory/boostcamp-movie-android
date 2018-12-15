@@ -129,7 +129,7 @@ class MovieActivity : AppCompatActivity(), View.OnClickListener{
 
     private fun getMovie() {
 
-        var movieInfo = networkService.getMovieInfo(myID, mySecret, mainSearchEdit.text.toString(),startItemNumber)
+        var movieInfo = networkService.getMovieInfo(myID, mySecret, mainSearchEdit.text.toString(),1)
 
         if (overlapNetworking == "MY_NETWORKING") {
 

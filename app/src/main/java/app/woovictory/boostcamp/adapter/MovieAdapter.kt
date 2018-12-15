@@ -15,6 +15,7 @@ import android.widget.TextView
 import app.woovictory.boostcamp.R
 import app.woovictory.boostcamp.Util
 import app.woovictory.boostcamp.data.MovieResponseData
+import app.woovictory.boostcamp.view.WebViewActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.item_movie_list.view.*
@@ -48,7 +49,10 @@ class MovieAdapter(var movieItems: ArrayList<MovieResponseData>, var context: Co
         holder.movieRating.rating = movieItems[position].userRating.toFloat() / 2.0f
 
         holder.movieRoot.setOnClickListener{
-            var intent = Intent(Intent.ACTION_VIEW,Uri.parse(movieItems[position].link))
+            //var intent = Intent(Intent.ACTION_VIEW,Uri.parse(movieItems[position].link))
+
+            var intent = Intent(context, WebViewActivity::class.java)
+            intent.putExtra("link",movieItems[position].link)
             context.startActivity(intent)
         }
 
