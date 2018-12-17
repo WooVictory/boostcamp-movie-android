@@ -28,7 +28,6 @@ class WebViewActivity : AppCompatActivity() {
 
         }
         var url : String = getIntent().getStringExtra("link")
-        Log.v("752 TAG",url.toString())
         movieWeb.loadUrl(url)
     }
 }

@@ -26,12 +26,14 @@ import retrofit2.Response
 import java.net.URLEncoder
 
 class MovieActivity : AppCompatActivity(), View.OnClickListener{
-
-
     override fun onClick(v: View?) {
         when (v!!) {
             movieSearchButton -> {
-                getMovie()
+                if(mainSearchEdit.text.toString().length>0)
+                    getMovie()
+                else
+                    toast("영화 제목을 입력해주세요!")
+                // 검색 버튼 시 키보드 내리기.
                 val imm: InputMethodManager = this!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(movieSearchButton.windowToken, 0)
             }
@@ -45,12 +47,14 @@ class MovieActivity : AppCompatActivity(), View.OnClickListener{
 
     lateinit var movieAdapter: MovieAdapter
     lateinit var progressDialog: ProgressDialog
-    private val myID: String = "390SRJYyF3b4hOZcyPbh"
-    private val mySecret: String = "6O4bk2hxJ8"
     private var startItemNumber = 1
     private var finalItemNumber = 10
     private var overlapNetworking: String = "MY_NETWORKING"
 
+    // 아래의 myID와 mySecret는 변수로 가지고 있으면 보안 상 문제로 인해
+    // 외부에서 가지고 있거나 apk 추출 후에도 변수 값을 뽑아내지 못하는 방법을 사용해야 한다고 생각함.
+    private val myID: String = "390SRJYyF3b4hOZcyPbh"
+    private val mySecret: String = "6O4bk2hxJ8"
     fun init() {
         movieSearchButton.setOnClickListener(this)
         movieList.setHasFixedSize(true)
@@ -67,12 +71,9 @@ class MovieActivity : AppCompatActivity(), View.OnClickListener{
         movieList.setOnScrollChangeListener(object : View.OnScrollChangeListener{
             override fun onScrollChange(v: View?, scrollX: Int, scrollY: Int, oldScrollX: Int, oldScrollY: Int) {
                 // recyclerview 최하단 스크롤 감지
-                Log.v("447 TAG","in func?")
                 if(!movieList.canScrollVertically(1)){
-                    Log.v("448 TAG","in func?")
                     if(!(startItemNumber>=finalItemNumber)){
                         movieSwipeRefresh.isRefreshing = false
-                        Log.v("449 TAG","in func?")
                         getMovieMore()
                     }else{
                         toast("목록을 모두 불러왔습니다.")
@@ -87,13 +88,12 @@ class MovieActivity : AppCompatActivity(), View.OnClickListener{
 
     }
 
-    // 영화 검색 시 통신
+    // 영화 검색 더 불러오기 통신
     fun getMovieMore(){
-        Log.v("500 TAG","in func?")
         var movieMoreInfo = networkService.getMovieInfo(myID,mySecret,mainSearchEdit.text.toString(),startItemNumber)
 
         if(overlapNetworking == "MY_NETWORKING"){
-            Log.v("600 TAG","in func?")
+
             createDialog()
             overlapNetworking = mainSearchEdit.text.toString()
 
@@ -151,7 +151,6 @@ class MovieActivity : AppCompatActivity(), View.OnClickListener{
                         ?.let {
                             if (it.items.size == 0) {
                                 var size = movieItems.size
-                                Log.v("900 TAG","$size")
                                 // 검색 결과가 없을 경우 리스트 비움
                                 movieItems.clear()
                                 movieAdapter.notifyItemRangeRemoved(0,size)
